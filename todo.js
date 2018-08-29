@@ -82,6 +82,7 @@ function doneTodo(todoEl,doneBtn ){
 	if (result) {
 		todoEl.style.color = 'green';
 		doneBtn.className= 'btn disable-done-btn';
+		doneBtn.disabled = true;
 	}
 }
 function clearErrorMsg(){
