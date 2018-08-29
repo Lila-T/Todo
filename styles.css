@@ -27,7 +27,7 @@ input{
 }
 
 .btn-add{
-	background-image: url("img/add.jpg");
+	background-image: url("img/add.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 }
