@@ -31,6 +31,7 @@ input{
 	background-size: contain;
 	background-repeat: no-repeat;
 }
+
 .btn-delete{
 	background-image: url("img/delete.png");
 	background-size: contain;
@@ -38,10 +39,11 @@ input{
 }
 
 .btn-undo{
-	background-image: url("img/undo-4.png");
+	background-image: url("img/undo.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 }
+
 .hide{
 	visibility:hidden;
 }
@@ -49,6 +51,7 @@ input{
 .complete-txt{
 	color: green;
 }
+
 .incomplete-txt{
 	color: black;
 }
@@ -62,16 +65,19 @@ input{
 	display:inline-block;
 	margin-right:5px;
 }
+
 .title{
 	width:200px;
 	font-weight:bold;
 	display:inline-block;
 }
+
 .actions{
 	width:50px;
 	text-align:center;
 	font-weight:bold;
 }
+
 .half-hr{
 	width:350px;
 	display:inline-block;
@@ -81,6 +87,7 @@ input{
     	width: 150px;
     	padding-left: 5px;
 }
+
 .error-msg{
 	background-color:#ef7070;
 }
