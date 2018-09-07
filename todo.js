@@ -13,12 +13,12 @@ function createTodoElement(todo, index){
 	var el = document.createElement('div'),
 	    todoEl = document.createElement('span'),
 	    deleteBtn = document.createElement('button'),
-	    doneBtn = document.createElement('button');
+	    doneBtn = document.createElement('button'),
+		undoBtn = document.createElement('button');
 
 	todoEl.innerHTML = todo + '&nbsp;'
-	todoEl.className='todoEl';
+	todoEl.className = 'todoEl';
 	
-	deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
 	deleteBtn.title='Delete';
 	deleteBtn.className='btn btn-delete';
 	deleteBtn.onclick = function(){
@@ -28,29 +28,35 @@ function createTodoElement(todo, index){
 	doneBtn.title = 'Done';
 	doneBtn.className = 'btn btn-done';
 	doneBtn.onclick = function(){
-		doneTodo(todoEl, doneBtn);
+		doneTodo(todoEl, doneBtn, undoBtn);
 	};
+	
+	undoBtn.title = 'Undo';
+    undoBtn.className = 'hide';
+	undoBtn.onclick = function (){
+		undo(todoEl, undoBtn, doneBtn);
+	}
 	
 	el.appendChild(todoEl);
 	el.appendChild(deleteBtn);
 	el.appendChild(doneBtn);
+	el.appendChild(undoBtn);
 	todoListContainer.appendChild(el);
 }
 	
-
 function addNewTodo(){
 	clearErrorMsg();
 	var result = checkDuplicate(newTodo.value);
 	if(result !== undefined ){
-		errorMsg.innerHTML = 'Duplicated Item';
+		setErrorMsg('Duplicated Item');
 		return;
 	}
 	if(newTodo.value == ''){
-	errorMsg.innerHTML = 'Please enter valid item';
+		setErrorMsg('Please enter valid item');
 		return;
 	}
 	var warningMsgEl = document.getElementById('warningMsg');
-	if(document.getElementById('warningMsg')){
+	if(warningMsgEl){
 		todoListContainer.removeChild(warningMsgEl);
 	}
 	todoList.push(newTodo.value);
@@ -77,19 +83,39 @@ function deleteTodo(todo, el){
 	else return ;
 }
 
-function doneTodo(todoEl,doneBtn ){
+function doneTodo(todoEl,doneBtn, undoBtn){
 	var result = confirm("Do you Want to done '"+ todoEl.innerText+ "' ?");
 	if (result) {
-		todoEl.style.color = 'green';
+		todoEl.className = 'todoEl complete-txt';
 		doneBtn.className= 'btn disable-done-btn';
 		doneBtn.disabled = true;
+		undoBtn.className = 'btn btn-undo visible';
+		
 	}
 }
-function clearErrorMsg(){
-	errorMsg.innerHTML='';
+
+function undo(todoEl, undoBtn, doneBtn ){
+	var result = confirm("Do you Want to undo '"+ todoEl.innerText+ "' ?");
+	if (result) {
+		undoBtn.className = 'btn btn-undo hide';
+		todoEl.className = 'todoEl incomplete-txt';
+		doneBtn.className= 'btn btn-done';
+		doneBtn.disabled = false;
+	}
 }
+
+//-----------------------------------------------------------------------------------------
+
 function checkDuplicate(todo){
 	return todoList.find(function (item){
 		return item == todo;
 	});
+}
+
+function setErrorMsg(msg){
+	errorMsg.innerHTML = msg;
+}
+
+function clearErrorMsg(){
+	errorMsg.innerHTML='';
 }

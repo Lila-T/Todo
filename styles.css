@@ -37,6 +37,26 @@ input{
 	background-repeat: no-repeat;
 }
 
+.btn-undo{
+	background-image: url("img/undo-4.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.hide{
+	visibility:hidden;
+}
+
+.complete-txt{
+	color: green;
+}
+.incomplete-txt{
+	color: black;
+}
+
+.visible{
+	visibility:visible;
+}
+
 .todoEl{
 	width:200px ;
 	display:inline-block;
